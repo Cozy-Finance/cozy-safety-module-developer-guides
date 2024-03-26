@@ -1,0 +1,1597 @@
+{
+  "abi": [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "cozySafetyModuleManager_",
+          "type": "address",
+          "internalType": "contract ICozySafetyModuleManager"
+        },
+        {
+          "name": "receiptTokenFactory_",
+          "type": "address",
+          "internalType": "contract IReceiptTokenFactory"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "acceptOwnership",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "assetPools",
+      "inputs": [
+        {
+          "name": "reserveAsset_",
+          "type": "address",
+          "internalType": "contract IERC20"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "claimFees",
+      "inputs": [
+        {
+          "name": "reservePoolIds_",
+          "type": "uint8[]",
+          "internalType": "uint8[]"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "claimFees",
+      "inputs": [
+        {
+          "name": "owner_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "dripModel_",
+          "type": "address",
+          "internalType": "contract IDripModel"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "completeRedemption",
+      "inputs": [
+        {
+          "name": "redemptionId_",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "reserveAssetAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "convertToReceiptTokenAmount",
+      "inputs": [
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "reserveAssetAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "convertToReserveAssetAmount",
+      "inputs": [
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "depositReceiptTokenAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "cozySafetyModuleManager",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract ICozySafetyModuleManager"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "delays",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "configUpdateDelay",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "configUpdateGracePeriod",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "withdrawDelay",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "depositReserveAssets",
+      "inputs": [
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "reserveAssetAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "depositReceiptTokenAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "depositReserveAssetsWithoutTransfer",
+      "inputs": [
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "reserveAssetAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "depositReceiptTokenAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "dripFees",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "dripFeesFromReservePool",
+      "inputs": [
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "internalType": "uint8"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "finalizeUpdateConfigs",
+      "inputs": [
+        {
+          "name": "configUpdates_",
+          "type": "tuple",
+          "internalType": "struct UpdateConfigsCalldataParams",
+          "components": [
+            {
+              "name": "reservePoolConfigs",
+              "type": "tuple[]",
+              "internalType": "struct ReservePoolConfig[]",
+              "components": [
+                {
+                  "name": "maxSlashPercentage",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "asset",
+                  "type": "address",
+                  "internalType": "contract IERC20"
+                }
+              ]
+            },
+            {
+              "name": "triggerConfigUpdates",
+              "type": "tuple[]",
+              "internalType": "struct TriggerConfig[]",
+              "components": [
+                {
+                  "name": "trigger",
+                  "type": "address",
+                  "internalType": "contract ITrigger"
+                },
+                {
+                  "name": "payoutHandler",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "exists",
+                  "type": "bool",
+                  "internalType": "bool"
+                }
+              ]
+            },
+            {
+              "name": "delaysConfig",
+              "type": "tuple",
+              "internalType": "struct Delays",
+              "components": [
+                {
+                  "name": "configUpdateDelay",
+                  "type": "uint64",
+                  "internalType": "uint64"
+                },
+                {
+                  "name": "configUpdateGracePeriod",
+                  "type": "uint64",
+                  "internalType": "uint64"
+                },
+                {
+                  "name": "withdrawDelay",
+                  "type": "uint64",
+                  "internalType": "uint64"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "getMaxSlashableReservePoolAmount",
+      "inputs": [
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "internalType": "uint8"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "slashableReservePoolAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "initialize",
+      "inputs": [
+        {
+          "name": "owner_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "pauser_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "configs_",
+          "type": "tuple",
+          "internalType": "struct UpdateConfigsCalldataParams",
+          "components": [
+            {
+              "name": "reservePoolConfigs",
+              "type": "tuple[]",
+              "internalType": "struct ReservePoolConfig[]",
+              "components": [
+                {
+                  "name": "maxSlashPercentage",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "asset",
+                  "type": "address",
+                  "internalType": "contract IERC20"
+                }
+              ]
+            },
+            {
+              "name": "triggerConfigUpdates",
+              "type": "tuple[]",
+              "internalType": "struct TriggerConfig[]",
+              "components": [
+                {
+                  "name": "trigger",
+                  "type": "address",
+                  "internalType": "contract ITrigger"
+                },
+                {
+                  "name": "payoutHandler",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "exists",
+                  "type": "bool",
+                  "internalType": "bool"
+                }
+              ]
+            },
+            {
+              "name": "delaysConfig",
+              "type": "tuple",
+              "internalType": "struct Delays",
+              "components": [
+                {
+                  "name": "configUpdateDelay",
+                  "type": "uint64",
+                  "internalType": "uint64"
+                },
+                {
+                  "name": "configUpdateGracePeriod",
+                  "type": "uint64",
+                  "internalType": "uint64"
+                },
+                {
+                  "name": "withdrawDelay",
+                  "type": "uint64",
+                  "internalType": "uint64"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "initialized",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "lastConfigUpdate",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "queuedConfigUpdateHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "configUpdateTime",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "configUpdateDeadline",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "numPendingSlashes",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint16",
+          "internalType": "uint16"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "owner",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "pause",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "pauser",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "payoutHandlerNumPendingSlashes",
+      "inputs": [
+        {
+          "name": "payoutHandler_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "numPendingSlashes_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "pendingOwner",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "previewQueuedRedemption",
+      "inputs": [
+        {
+          "name": "redemptionId_",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "redemptionPreview_",
+          "type": "tuple",
+          "internalType": "struct RedemptionPreview",
+          "components": [
+            {
+              "name": "delayRemaining",
+              "type": "uint40",
+              "internalType": "uint40"
+            },
+            {
+              "name": "receiptTokenAmount",
+              "type": "uint216",
+              "internalType": "uint216"
+            },
+            {
+              "name": "receiptToken",
+              "type": "address",
+              "internalType": "contract IReceiptToken"
+            },
+            {
+              "name": "reserveAssetAmount",
+              "type": "uint128",
+              "internalType": "uint128"
+            },
+            {
+              "name": "owner",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "receiver",
+              "type": "address",
+              "internalType": "address"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "previewRedemption",
+      "inputs": [
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "depositReceiptTokenAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "reserveAssetAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "receiptTokenFactory",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IReceiptTokenFactory"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "redeem",
+      "inputs": [
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "depositReceiptTokenAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "owner_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "redemptionId_",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "reserveAssetAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "redemptions",
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "reservePoolId",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "receiptTokenAmount",
+          "type": "uint216",
+          "internalType": "uint216"
+        },
+        {
+          "name": "receiptToken",
+          "type": "address",
+          "internalType": "contract IReceiptToken"
+        },
+        {
+          "name": "assetAmount",
+          "type": "uint128",
+          "internalType": "uint128"
+        },
+        {
+          "name": "owner",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "receiver",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "queueTime",
+          "type": "uint40",
+          "internalType": "uint40"
+        },
+        {
+          "name": "delay",
+          "type": "uint40",
+          "internalType": "uint40"
+        },
+        {
+          "name": "queuedAccISFsLength",
+          "type": "uint32",
+          "internalType": "uint32"
+        },
+        {
+          "name": "queuedAccISF",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "reservePools",
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "depositAmount",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "pendingWithdrawalsAmount",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "feeAmount",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "maxSlashPercentage",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "asset",
+          "type": "address",
+          "internalType": "contract IERC20"
+        },
+        {
+          "name": "depositReceiptToken",
+          "type": "address",
+          "internalType": "contract IReceiptToken"
+        },
+        {
+          "name": "lastFeesDripTime",
+          "type": "uint128",
+          "internalType": "uint128"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "safetyModuleState",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8",
+          "internalType": "enum SafetyModuleState"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "slash",
+      "inputs": [
+        {
+          "name": "slashes_",
+          "type": "tuple[]",
+          "internalType": "struct Slash[]",
+          "components": [
+            {
+              "name": "reservePoolId",
+              "type": "uint8",
+              "internalType": "uint8"
+            },
+            {
+              "name": "amount",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ]
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "transferOwnership",
+      "inputs": [
+        {
+          "name": "newOwner_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "trigger",
+      "inputs": [
+        {
+          "name": "trigger_",
+          "type": "address",
+          "internalType": "contract ITrigger"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "triggerData",
+      "inputs": [
+        {
+          "name": "trigger_",
+          "type": "address",
+          "internalType": "contract ITrigger"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "exists",
+          "type": "bool",
+          "internalType": "bool"
+        },
+        {
+          "name": "payoutHandler",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "triggered",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "unpause",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "updateConfigs",
+      "inputs": [
+        {
+          "name": "configUpdates_",
+          "type": "tuple",
+          "internalType": "struct UpdateConfigsCalldataParams",
+          "components": [
+            {
+              "name": "reservePoolConfigs",
+              "type": "tuple[]",
+              "internalType": "struct ReservePoolConfig[]",
+              "components": [
+                {
+                  "name": "maxSlashPercentage",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "asset",
+                  "type": "address",
+                  "internalType": "contract IERC20"
+                }
+              ]
+            },
+            {
+              "name": "triggerConfigUpdates",
+              "type": "tuple[]",
+              "internalType": "struct TriggerConfig[]",
+              "components": [
+                {
+                  "name": "trigger",
+                  "type": "address",
+                  "internalType": "contract ITrigger"
+                },
+                {
+                  "name": "payoutHandler",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "exists",
+                  "type": "bool",
+                  "internalType": "bool"
+                }
+              ]
+            },
+            {
+              "name": "delaysConfig",
+              "type": "tuple",
+              "internalType": "struct Delays",
+              "components": [
+                {
+                  "name": "configUpdateDelay",
+                  "type": "uint64",
+                  "internalType": "uint64"
+                },
+                {
+                  "name": "configUpdateGracePeriod",
+                  "type": "uint64",
+                  "internalType": "uint64"
+                },
+                {
+                  "name": "withdrawDelay",
+                  "type": "uint64",
+                  "internalType": "uint64"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "updatePauser",
+      "inputs": [
+        {
+          "name": "newPauser_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "event",
+      "name": "ClaimedFees",
+      "inputs": [
+        {
+          "name": "reserveAsset_",
+          "type": "address",
+          "indexed": true,
+          "internalType": "contract IERC20"
+        },
+        {
+          "name": "feeAmount_",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "owner_",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "ConfigUpdatesFinalized",
+      "inputs": [
+        {
+          "name": "reservePoolConfigs",
+          "type": "tuple[]",
+          "indexed": false,
+          "internalType": "struct ReservePoolConfig[]",
+          "components": [
+            {
+              "name": "maxSlashPercentage",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "asset",
+              "type": "address",
+              "internalType": "contract IERC20"
+            }
+          ]
+        },
+        {
+          "name": "triggerConfigUpdates",
+          "type": "tuple[]",
+          "indexed": false,
+          "internalType": "struct TriggerConfig[]",
+          "components": [
+            {
+              "name": "trigger",
+              "type": "address",
+              "internalType": "contract ITrigger"
+            },
+            {
+              "name": "payoutHandler",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "exists",
+              "type": "bool",
+              "internalType": "bool"
+            }
+          ]
+        },
+        {
+          "name": "delaysConfig",
+          "type": "tuple",
+          "indexed": false,
+          "internalType": "struct Delays",
+          "components": [
+            {
+              "name": "configUpdateDelay",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "configUpdateGracePeriod",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "withdrawDelay",
+              "type": "uint64",
+              "internalType": "uint64"
+            }
+          ]
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "ConfigUpdatesQueued",
+      "inputs": [
+        {
+          "name": "reservePoolConfigs",
+          "type": "tuple[]",
+          "indexed": false,
+          "internalType": "struct ReservePoolConfig[]",
+          "components": [
+            {
+              "name": "maxSlashPercentage",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "asset",
+              "type": "address",
+              "internalType": "contract IERC20"
+            }
+          ]
+        },
+        {
+          "name": "triggerConfigUpdates",
+          "type": "tuple[]",
+          "indexed": false,
+          "internalType": "struct TriggerConfig[]",
+          "components": [
+            {
+              "name": "trigger",
+              "type": "address",
+              "internalType": "contract ITrigger"
+            },
+            {
+              "name": "payoutHandler",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "exists",
+              "type": "bool",
+              "internalType": "bool"
+            }
+          ]
+        },
+        {
+          "name": "delaysConfig",
+          "type": "tuple",
+          "indexed": false,
+          "internalType": "struct Delays",
+          "components": [
+            {
+              "name": "configUpdateDelay",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "configUpdateGracePeriod",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "withdrawDelay",
+              "type": "uint64",
+              "internalType": "uint64"
+            }
+          ]
+        },
+        {
+          "name": "updateTime",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "updateDeadline",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "Deposited",
+      "inputs": [
+        {
+          "name": "caller_",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "indexed": true,
+          "internalType": "uint8"
+        },
+        {
+          "name": "depositReceiptToken_",
+          "type": "address",
+          "indexed": false,
+          "internalType": "contract IReceiptToken"
+        },
+        {
+          "name": "assetAmount_",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "depositReceiptTokenAmount_",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "OwnershipTransferStarted",
+      "inputs": [
+        {
+          "name": "previousOwner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "newOwner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "OwnershipTransferred",
+      "inputs": [
+        {
+          "name": "previousOwner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "newOwner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "PauserUpdated",
+      "inputs": [
+        {
+          "name": "newPauser_",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "Redeemed",
+      "inputs": [
+        {
+          "name": "caller_",
+          "type": "address",
+          "indexed": false,
+          "internalType": "address"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "owner_",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "indexed": true,
+          "internalType": "uint8"
+        },
+        {
+          "name": "receiptToken_",
+          "type": "address",
+          "indexed": false,
+          "internalType": "contract IReceiptToken"
+        },
+        {
+          "name": "receiptTokenAmount_",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "reserveAssetAmount_",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "redemptionId_",
+          "type": "uint64",
+          "indexed": false,
+          "internalType": "uint64"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "RedemptionPending",
+      "inputs": [
+        {
+          "name": "caller_",
+          "type": "address",
+          "indexed": false,
+          "internalType": "address"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "owner_",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "indexed": true,
+          "internalType": "uint8"
+        },
+        {
+          "name": "receiptToken_",
+          "type": "address",
+          "indexed": false,
+          "internalType": "contract IReceiptToken"
+        },
+        {
+          "name": "receiptTokenAmount_",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "reserveAssetAmount_",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "redemptionId_",
+          "type": "uint64",
+          "indexed": false,
+          "internalType": "uint64"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "ReservePoolCreated",
+      "inputs": [
+        {
+          "name": "reservePoolId",
+          "type": "uint16",
+          "indexed": true,
+          "internalType": "uint16"
+        },
+        {
+          "name": "reserveAsset",
+          "type": "address",
+          "indexed": false,
+          "internalType": "contract IERC20"
+        },
+        {
+          "name": "depositReceiptToken",
+          "type": "address",
+          "indexed": false,
+          "internalType": "contract IReceiptToken"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "SafetyModuleStateUpdated",
+      "inputs": [
+        {
+          "name": "updatedTo_",
+          "type": "uint8",
+          "indexed": true,
+          "internalType": "enum SafetyModuleState"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "Slashed",
+      "inputs": [
+        {
+          "name": "payoutHandler_",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "indexed": true,
+          "internalType": "uint8"
+        },
+        {
+          "name": "assetAmount_",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "Triggered",
+      "inputs": [
+        {
+          "name": "trigger",
+          "type": "address",
+          "indexed": true,
+          "internalType": "contract ITrigger"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "error",
+      "name": "AddressEmptyCode",
+      "inputs": [
+        {
+          "name": "target",
+          "type": "address",
+          "internalType": "address"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "AddressInsufficientBalance",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "internalType": "address"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "AlreadySlashed",
+      "inputs": [
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "internalType": "uint8"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "AmountIsZero",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "DelayNotElapsed",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "ExceedsMaxSlashPercentage",
+      "inputs": [
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "slashPercentage_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "FailedInnerCall",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "Initialized",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "InvalidAddress",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "InvalidConfiguration",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "InvalidDeposit",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "InvalidDripFactor",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "InvalidState",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "InvalidStateTransition",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "InvalidTimestamp",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "InvalidTrigger",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "NoAssetsToRedeem",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "RedemptionNotFound",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "RoundsToZero",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "SafeCastFailed",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "SafeERC20FailedOperation",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "internalType": "address"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "Unauthorized",
+      "inputs": []
+    }
+  ]
+}

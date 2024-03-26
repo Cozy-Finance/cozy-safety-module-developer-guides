@@ -1,0 +1,510 @@
+{
+  "abi": [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "owner_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "pauser_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "safetyModuleFactory_",
+          "type": "address",
+          "internalType": "contract ISafetyModuleFactory"
+        },
+        {
+          "name": "feeDripModel_",
+          "type": "address",
+          "internalType": "contract IDripModel"
+        },
+        {
+          "name": "allowedReservePools_",
+          "type": "uint8",
+          "internalType": "uint8"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "acceptOwnership",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "allowedReservePools",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8",
+          "internalType": "uint8"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "claimFees",
+      "inputs": [
+        {
+          "name": "safetyModules_",
+          "type": "address[]",
+          "internalType": "contract ISafetyModule[]"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "computeSafetyModuleAddress",
+      "inputs": [
+        {
+          "name": "caller_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "salt_",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "createSafetyModule",
+      "inputs": [
+        {
+          "name": "owner_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "pauser_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "configs_",
+          "type": "tuple",
+          "internalType": "struct UpdateConfigsCalldataParams",
+          "components": [
+            {
+              "name": "reservePoolConfigs",
+              "type": "tuple[]",
+              "internalType": "struct ReservePoolConfig[]",
+              "components": [
+                {
+                  "name": "maxSlashPercentage",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "asset",
+                  "type": "address",
+                  "internalType": "contract IERC20"
+                }
+              ]
+            },
+            {
+              "name": "triggerConfigUpdates",
+              "type": "tuple[]",
+              "internalType": "struct TriggerConfig[]",
+              "components": [
+                {
+                  "name": "trigger",
+                  "type": "address",
+                  "internalType": "contract ITrigger"
+                },
+                {
+                  "name": "payoutHandler",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "exists",
+                  "type": "bool",
+                  "internalType": "bool"
+                }
+              ]
+            },
+            {
+              "name": "delaysConfig",
+              "type": "tuple",
+              "internalType": "struct Delays",
+              "components": [
+                {
+                  "name": "configUpdateDelay",
+                  "type": "uint64",
+                  "internalType": "uint64"
+                },
+                {
+                  "name": "configUpdateGracePeriod",
+                  "type": "uint64",
+                  "internalType": "uint64"
+                },
+                {
+                  "name": "withdrawDelay",
+                  "type": "uint64",
+                  "internalType": "uint64"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "salt_",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "internalType": "contract ISafetyModule"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "feeDripModel",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IDripModel"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getFeeDripModel",
+      "inputs": [
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "internalType": "contract ISafetyModule"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IDripModel"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "isSafetyModule",
+      "inputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract ISafetyModule"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "overrideFeeDripModels",
+      "inputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract ISafetyModule"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "dripModel",
+          "type": "address",
+          "internalType": "contract IDripModel"
+        },
+        {
+          "name": "exists",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "owner",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "pause",
+      "inputs": [
+        {
+          "name": "safetyModules_",
+          "type": "address[]",
+          "internalType": "contract ISafetyModule[]"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "pauser",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "pendingOwner",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "resetOverrideFeeDripModel",
+      "inputs": [
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "internalType": "contract ISafetyModule"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "safetyModuleFactory",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract ISafetyModuleFactory"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "transferOwnership",
+      "inputs": [
+        {
+          "name": "newOwner_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "unpause",
+      "inputs": [
+        {
+          "name": "safetyModules_",
+          "type": "address[]",
+          "internalType": "contract ISafetyModule[]"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "updateFeeDripModel",
+      "inputs": [
+        {
+          "name": "feeDripModel_",
+          "type": "address",
+          "internalType": "contract IDripModel"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "updateOverrideFeeDripModel",
+      "inputs": [
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "internalType": "contract ISafetyModule"
+        },
+        {
+          "name": "feeDripModel_",
+          "type": "address",
+          "internalType": "contract IDripModel"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "event",
+      "name": "ClaimedSafetyModuleFees",
+      "inputs": [
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "indexed": true,
+          "internalType": "contract ISafetyModule"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "FeeDripModelUpdated",
+      "inputs": [
+        {
+          "name": "feeDripModel_",
+          "type": "address",
+          "indexed": true,
+          "internalType": "contract IDripModel"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "OverrideFeeDripModelUpdated",
+      "inputs": [
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "indexed": true,
+          "internalType": "contract ISafetyModule"
+        },
+        {
+          "name": "feeDripModel_",
+          "type": "address",
+          "indexed": true,
+          "internalType": "contract IDripModel"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "OwnershipTransferStarted",
+      "inputs": [
+        {
+          "name": "previousOwner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "newOwner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "OwnershipTransferred",
+      "inputs": [
+        {
+          "name": "previousOwner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "newOwner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "PauserUpdated",
+      "inputs": [
+        {
+          "name": "newPauser_",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "error",
+      "name": "InvalidAddress",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "InvalidConfiguration",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "Unauthorized",
+      "inputs": []
+    }
+  ]
+}

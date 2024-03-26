@@ -1,0 +1,271 @@
+{
+  "abi": [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "owner_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "pauser_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "rewardsManagerFactory_",
+          "type": "address",
+          "internalType": "contract IRewardsManagerFactory"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "acceptOwnership",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "computeRewardsManagerAddress",
+      "inputs": [
+        {
+          "name": "caller_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "salt_",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "createRewardsManager",
+      "inputs": [
+        {
+          "name": "owner_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "pauser_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "stakePoolConfigs_",
+          "type": "tuple[]",
+          "internalType": "struct StakePoolConfig[]",
+          "components": [
+            {
+              "name": "asset",
+              "type": "address",
+              "internalType": "contract IERC20"
+            },
+            {
+              "name": "rewardsWeight",
+              "type": "uint16",
+              "internalType": "uint16"
+            }
+          ]
+        },
+        {
+          "name": "rewardPoolConfigs_",
+          "type": "tuple[]",
+          "internalType": "struct RewardPoolConfig[]",
+          "components": [
+            {
+              "name": "asset",
+              "type": "address",
+              "internalType": "contract IERC20"
+            },
+            {
+              "name": "dripModel",
+              "type": "address",
+              "internalType": "contract IDripModel"
+            }
+          ]
+        },
+        {
+          "name": "salt_",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "rewardsManager_",
+          "type": "address",
+          "internalType": "contract IRewardsManager"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "owner",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "pause",
+      "inputs": [
+        {
+          "name": "rewardsManagers_",
+          "type": "address[]",
+          "internalType": "contract IRewardsManager[]"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "pauser",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "pendingOwner",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "rewardsManagerFactory",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IRewardsManagerFactory"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "transferOwnership",
+      "inputs": [
+        {
+          "name": "newOwner_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "unpause",
+      "inputs": [
+        {
+          "name": "rewardsManagers_",
+          "type": "address[]",
+          "internalType": "contract IRewardsManager[]"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "event",
+      "name": "OwnershipTransferStarted",
+      "inputs": [
+        {
+          "name": "previousOwner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "newOwner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "OwnershipTransferred",
+      "inputs": [
+        {
+          "name": "previousOwner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "newOwner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "PauserUpdated",
+      "inputs": [
+        {
+          "name": "newPauser_",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "error",
+      "name": "InvalidAddress",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "Unauthorized",
+      "inputs": []
+    }
+  ]
+}
