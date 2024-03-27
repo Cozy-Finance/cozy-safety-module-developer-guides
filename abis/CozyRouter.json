@@ -1,0 +1,1691 @@
+{
+  "abi": [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "safetyModuleCozyManager_",
+          "type": "address",
+          "internalType": "contract ICozySafetyModuleManager"
+        },
+        {
+          "name": "rewardsManagerCozyManager_",
+          "type": "address",
+          "internalType": "contract ICozyManager"
+        },
+        {
+          "name": "weth_",
+          "type": "address",
+          "internalType": "contract IWeth"
+        },
+        {
+          "name": "stEth_",
+          "type": "address",
+          "internalType": "contract IStETH"
+        },
+        {
+          "name": "wstEth_",
+          "type": "address",
+          "internalType": "contract IWstETH"
+        },
+        {
+          "name": "triggerFactories_",
+          "type": "tuple",
+          "internalType": "struct TriggerFactories",
+          "components": [
+            {
+              "name": "chainlinkTriggerFactory",
+              "type": "address",
+              "internalType": "contract IChainlinkTriggerFactory"
+            },
+            {
+              "name": "ownableTriggerFactory",
+              "type": "address",
+              "internalType": "contract IOwnableTriggerFactory"
+            },
+            {
+              "name": "umaTriggerFactory",
+              "type": "address",
+              "internalType": "contract IUMATriggerFactory"
+            }
+          ]
+        },
+        {
+          "name": "dripModelConstantFactory_",
+          "type": "address",
+          "internalType": "contract IDripModelConstantFactory"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "receive",
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "aggregate",
+      "inputs": [
+        {
+          "name": "calls_",
+          "type": "bytes[]",
+          "internalType": "bytes[]"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "returnData_",
+          "type": "bytes[]",
+          "internalType": "bytes[]"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "chainlinkTriggerFactory",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IChainlinkTriggerFactory"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "completeRedemption",
+      "inputs": [
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "internalType": "contract ISafetyModule"
+        },
+        {
+          "name": "id_",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "completeWithdraw",
+      "inputs": [
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "internalType": "contract ISafetyModule"
+        },
+        {
+          "name": "id_",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "computeSalt",
+      "inputs": [
+        {
+          "name": "caller_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "baseSalt_",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "stateMutability": "pure"
+    },
+    {
+      "type": "function",
+      "name": "deployChainlinkFixedPriceTrigger",
+      "inputs": [
+        {
+          "name": "price_",
+          "type": "int256",
+          "internalType": "int256"
+        },
+        {
+          "name": "decimals_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "trackingOracle_",
+          "type": "address",
+          "internalType": "contract AggregatorV3Interface"
+        },
+        {
+          "name": "priceTolerance_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "frequencyTolerance_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "metadata_",
+          "type": "tuple",
+          "internalType": "struct TriggerMetadata",
+          "components": [
+            {
+              "name": "name",
+              "type": "string",
+              "internalType": "string"
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "internalType": "string"
+            },
+            {
+              "name": "logoURI",
+              "type": "string",
+              "internalType": "string"
+            },
+            {
+              "name": "extraData",
+              "type": "string",
+              "internalType": "string"
+            }
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "trigger_",
+          "type": "address",
+          "internalType": "contract ITrigger"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "deployChainlinkTrigger",
+      "inputs": [
+        {
+          "name": "truthOracle_",
+          "type": "address",
+          "internalType": "contract AggregatorV3Interface"
+        },
+        {
+          "name": "trackingOracle_",
+          "type": "address",
+          "internalType": "contract AggregatorV3Interface"
+        },
+        {
+          "name": "priceTolerance_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "truthFrequencyTolerance_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "trackingFrequencyTolerance_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "metadata_",
+          "type": "tuple",
+          "internalType": "struct TriggerMetadata",
+          "components": [
+            {
+              "name": "name",
+              "type": "string",
+              "internalType": "string"
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "internalType": "string"
+            },
+            {
+              "name": "logoURI",
+              "type": "string",
+              "internalType": "string"
+            },
+            {
+              "name": "extraData",
+              "type": "string",
+              "internalType": "string"
+            }
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "trigger_",
+          "type": "address",
+          "internalType": "contract ITrigger"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "deployDripModelConstant",
+      "inputs": [
+        {
+          "name": "owner_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "amountPerSecond_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "baseSalt_",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "dripModel_",
+          "type": "address",
+          "internalType": "contract IDripModel"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "deployOwnableTrigger",
+      "inputs": [
+        {
+          "name": "owner_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "metadata_",
+          "type": "tuple",
+          "internalType": "struct TriggerMetadata",
+          "components": [
+            {
+              "name": "name",
+              "type": "string",
+              "internalType": "string"
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "internalType": "string"
+            },
+            {
+              "name": "logoURI",
+              "type": "string",
+              "internalType": "string"
+            },
+            {
+              "name": "extraData",
+              "type": "string",
+              "internalType": "string"
+            }
+          ]
+        },
+        {
+          "name": "salt_",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "trigger_",
+          "type": "address",
+          "internalType": "contract ITrigger"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "deployRewardsManager",
+      "inputs": [
+        {
+          "name": "owner_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "pauser_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "stakePoolConfigs_",
+          "type": "tuple[]",
+          "internalType": "struct StakePoolConfig[]",
+          "components": [
+            {
+              "name": "asset",
+              "type": "address",
+              "internalType": "contract IERC20"
+            },
+            {
+              "name": "rewardsWeight",
+              "type": "uint16",
+              "internalType": "uint16"
+            }
+          ]
+        },
+        {
+          "name": "rewardPoolConfigs_",
+          "type": "tuple[]",
+          "internalType": "struct RewardPoolConfig[]",
+          "components": [
+            {
+              "name": "asset",
+              "type": "address",
+              "internalType": "contract IERC20"
+            },
+            {
+              "name": "dripModel",
+              "type": "address",
+              "internalType": "contract IDripModel"
+            }
+          ]
+        },
+        {
+          "name": "salt_",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "rewardsManager_",
+          "type": "address",
+          "internalType": "contract IRewardsManager"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "deploySafetyModule",
+      "inputs": [
+        {
+          "name": "owner_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "pauser_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "configs_",
+          "type": "tuple",
+          "internalType": "struct UpdateConfigsCalldataParams",
+          "components": [
+            {
+              "name": "reservePoolConfigs",
+              "type": "tuple[]",
+              "internalType": "struct ReservePoolConfig[]",
+              "components": [
+                {
+                  "name": "maxSlashPercentage",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "asset",
+                  "type": "address",
+                  "internalType": "contract IERC20"
+                }
+              ]
+            },
+            {
+              "name": "triggerConfigUpdates",
+              "type": "tuple[]",
+              "internalType": "struct TriggerConfig[]",
+              "components": [
+                {
+                  "name": "trigger",
+                  "type": "address",
+                  "internalType": "contract ITrigger"
+                },
+                {
+                  "name": "payoutHandler",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "exists",
+                  "type": "bool",
+                  "internalType": "bool"
+                }
+              ]
+            },
+            {
+              "name": "delaysConfig",
+              "type": "tuple",
+              "internalType": "struct Delays",
+              "components": [
+                {
+                  "name": "configUpdateDelay",
+                  "type": "uint64",
+                  "internalType": "uint64"
+                },
+                {
+                  "name": "configUpdateGracePeriod",
+                  "type": "uint64",
+                  "internalType": "uint64"
+                },
+                {
+                  "name": "withdrawDelay",
+                  "type": "uint64",
+                  "internalType": "uint64"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "salt_",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "internalType": "contract ISafetyModule"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "deployUMATrigger",
+      "inputs": [
+        {
+          "name": "query_",
+          "type": "string",
+          "internalType": "string"
+        },
+        {
+          "name": "rewardToken_",
+          "type": "address",
+          "internalType": "contract IERC20"
+        },
+        {
+          "name": "rewardAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "refundRecipient_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "bondAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "proposalDisputeWindow_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "metadata_",
+          "type": "tuple",
+          "internalType": "struct TriggerMetadata",
+          "components": [
+            {
+              "name": "name",
+              "type": "string",
+              "internalType": "string"
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "internalType": "string"
+            },
+            {
+              "name": "logoURI",
+              "type": "string",
+              "internalType": "string"
+            },
+            {
+              "name": "extraData",
+              "type": "string",
+              "internalType": "string"
+            }
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "trigger_",
+          "type": "address",
+          "internalType": "contract ITrigger"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "depositReserveAssets",
+      "inputs": [
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "internalType": "contract ISafetyModule"
+        },
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "reserveAssetAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "depositReceiptTokenAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "depositReserveAssetsAndStake",
+      "inputs": [
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "internalType": "contract ISafetyModule"
+        },
+        {
+          "name": "rewardsManager_",
+          "type": "address",
+          "internalType": "contract IRewardsManager"
+        },
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "stakePoolId_",
+          "type": "uint16",
+          "internalType": "uint16"
+        },
+        {
+          "name": "reserveAssetAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "receiptTokenAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "depositReserveAssetsViaConnectorAndStake",
+      "inputs": [
+        {
+          "name": "connector_",
+          "type": "address",
+          "internalType": "contract IConnector"
+        },
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "internalType": "contract ISafetyModule"
+        },
+        {
+          "name": "rewardsManager_",
+          "type": "address",
+          "internalType": "contract IRewardsManager"
+        },
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "stakePoolId_",
+          "type": "uint16",
+          "internalType": "uint16"
+        },
+        {
+          "name": "baseAssetAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "receiptTokenAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "depositReserveAssetsWithoutTransfer",
+      "inputs": [
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "internalType": "contract ISafetyModule"
+        },
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "reserveAssetAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "depositReceiptTokenAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "depositRewardAssets",
+      "inputs": [
+        {
+          "name": "rewardsManager_",
+          "type": "address",
+          "internalType": "contract IRewardsManager"
+        },
+        {
+          "name": "rewardPoolId_",
+          "type": "uint16",
+          "internalType": "uint16"
+        },
+        {
+          "name": "rewardAssetAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "depositReceiptTokenAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "depositRewardAssetsWithoutTransfer",
+      "inputs": [
+        {
+          "name": "rewardsManager_",
+          "type": "address",
+          "internalType": "contract IRewardsManager"
+        },
+        {
+          "name": "rewardPoolId_",
+          "type": "uint16",
+          "internalType": "uint16"
+        },
+        {
+          "name": "rewardAssetAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "depositReceiptTokenAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "dripModelConstantFactory",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IDripModelConstantFactory"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "ownableTriggerFactory",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IOwnableTriggerFactory"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "permitRouter",
+      "inputs": [
+        {
+          "name": "token_",
+          "type": "address",
+          "internalType": "contract IERC20"
+        },
+        {
+          "name": "value_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "deadline_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "v_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "r_",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "s_",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "redeemReservePoolDepositReceiptTokens",
+      "inputs": [
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "internalType": "contract ISafetyModule"
+        },
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "depositReceiptTokenAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "redemptionId_",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "assetsReceived_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "redeemRewardPoolDepositReceiptTokens",
+      "inputs": [
+        {
+          "name": "rewardsManager_",
+          "type": "address",
+          "internalType": "contract IRewardsManager"
+        },
+        {
+          "name": "rewardPoolId_",
+          "type": "uint16",
+          "internalType": "uint16"
+        },
+        {
+          "name": "depositReceiptTokenAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "assetsReceived_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "rewardsManagerCozyManager",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract ICozyManager"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "safetyModuleCozyManager",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract ICozySafetyModuleManager"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "stEth",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IStETH"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "stake",
+      "inputs": [
+        {
+          "name": "rewardsManager_",
+          "type": "address",
+          "internalType": "contract IRewardsManager"
+        },
+        {
+          "name": "stakePoolId_",
+          "type": "uint16",
+          "internalType": "uint16"
+        },
+        {
+          "name": "stakeAssetAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "stakeWithoutTransfer",
+      "inputs": [
+        {
+          "name": "rewardsManager_",
+          "type": "address",
+          "internalType": "contract IRewardsManager"
+        },
+        {
+          "name": "stakePoolId_",
+          "type": "uint16",
+          "internalType": "uint16"
+        },
+        {
+          "name": "stakeAssetAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "sweepToken",
+      "inputs": [
+        {
+          "name": "token_",
+          "type": "address",
+          "internalType": "contract IERC20"
+        },
+        {
+          "name": "recipient_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "amountMin_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "amount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "transferTokens",
+      "inputs": [
+        {
+          "name": "token_",
+          "type": "address",
+          "internalType": "contract IERC20"
+        },
+        {
+          "name": "recipient_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "amount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "umaTriggerFactory",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IUMATriggerFactory"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "unstake",
+      "inputs": [
+        {
+          "name": "rewardsManager_",
+          "type": "address",
+          "internalType": "contract IRewardsManager"
+        },
+        {
+          "name": "stakePoolId_",
+          "type": "uint16",
+          "internalType": "uint16"
+        },
+        {
+          "name": "stakeReceiptTokenAmount",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "unstakeReserveAssetsAndWithdraw",
+      "inputs": [
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "internalType": "contract ISafetyModule"
+        },
+        {
+          "name": "rewardsManager_",
+          "type": "address",
+          "internalType": "contract IRewardsManager"
+        },
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "stakePoolId_",
+          "type": "uint16",
+          "internalType": "uint16"
+        },
+        {
+          "name": "reserveAssetAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "redemptionId_",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "stakeReceiptTokenAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "unstakeStakeReceiptTokensAndRedeem",
+      "inputs": [
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "internalType": "contract ISafetyModule"
+        },
+        {
+          "name": "rewardsManager_",
+          "type": "address",
+          "internalType": "contract IRewardsManager"
+        },
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "stakePoolId_",
+          "type": "uint16",
+          "internalType": "uint16"
+        },
+        {
+          "name": "stakeReceiptTokenAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "redemptionId_",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "reserveAssetAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "unwrapStEth",
+      "inputs": [
+        {
+          "name": "recipient_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "unwrapWeth",
+      "inputs": [
+        {
+          "name": "recipient_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "amount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "unwrapWeth",
+      "inputs": [
+        {
+          "name": "recipient_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "unwrapWrappedAssetViaConnector",
+      "inputs": [
+        {
+          "name": "connector_",
+          "type": "address",
+          "internalType": "contract IConnector"
+        },
+        {
+          "name": "assets_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "unwrapWrappedAssetViaConnectorForWithdraw",
+      "inputs": [
+        {
+          "name": "connector_",
+          "type": "address",
+          "internalType": "contract IConnector"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "updateSafetyModuleMetadata",
+      "inputs": [
+        {
+          "name": "metadataRegistry_",
+          "type": "address",
+          "internalType": "contract IMetadataRegistry"
+        },
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "metadata_",
+          "type": "tuple",
+          "internalType": "struct IMetadataRegistry.Metadata",
+          "components": [
+            {
+              "name": "name",
+              "type": "string",
+              "internalType": "string"
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "internalType": "string"
+            },
+            {
+              "name": "logoURI",
+              "type": "string",
+              "internalType": "string"
+            },
+            {
+              "name": "extraData",
+              "type": "string",
+              "internalType": "string"
+            }
+          ]
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "weth",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IWeth"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "withdrawReservePoolAssets",
+      "inputs": [
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "internalType": "contract ISafetyModule"
+        },
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "reserveAssetAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "redemptionId_",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "depositReceiptTokenAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "withdrawRewardPoolAssets",
+      "inputs": [
+        {
+          "name": "rewardsManager_",
+          "type": "address",
+          "internalType": "contract IRewardsManager"
+        },
+        {
+          "name": "rewardPoolId_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "rewardAssetAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "depositReceiptTokenAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "wrapBaseAssetViaConnectorAndDepositReserveAssets",
+      "inputs": [
+        {
+          "name": "connector_",
+          "type": "address",
+          "internalType": "contract IConnector"
+        },
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "internalType": "contract ISafetyModule"
+        },
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "baseAssetAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "depositReceiptTokenAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "wrapBaseAssetViaConnectorAndDepositRewardAssets",
+      "inputs": [
+        {
+          "name": "connector_",
+          "type": "address",
+          "internalType": "contract IConnector"
+        },
+        {
+          "name": "rewardsManager_",
+          "type": "address",
+          "internalType": "contract IRewardsManager"
+        },
+        {
+          "name": "reservePoolId_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "baseAssetAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "depositReceiptTokenAmount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "wrapStEth",
+      "inputs": [
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "wrapStEth",
+      "inputs": [
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "amount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "wrapWeth",
+      "inputs": [
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "amount_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "wrapWeth",
+      "inputs": [
+        {
+          "name": "safetyModule_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "wstEth",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IWstETH"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "error",
+      "name": "AddressEmptyCode",
+      "inputs": [
+        {
+          "name": "target",
+          "type": "address",
+          "internalType": "address"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "AddressInsufficientBalance",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "internalType": "address"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "CallFailed",
+      "inputs": [
+        {
+          "name": "index",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "returnData",
+          "type": "bytes",
+          "internalType": "bytes"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "FailedInnerCall",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "InsufficientBalance",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "InvalidAddress",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "SafeERC20FailedOperation",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "internalType": "address"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "TransferFailed",
+      "inputs": []
+    }
+  ]
+}
