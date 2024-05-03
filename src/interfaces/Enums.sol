@@ -11,3 +11,9 @@ enum RewardsManagerState {
   ACTIVE,
   PAUSED
 }
+
+enum TriggerState {
+  ACTIVE,
+  TRIGGERED,
+  FROZEN
+}
