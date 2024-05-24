@@ -46,12 +46,12 @@ contract DeployUnion is ScriptUtils {
   using stdJson for string;
 
   address caller_ = address(0xBBD3321f377742c4b3fe458b270c2F271d3294D8);
-  ICozyRouter router = ICozyRouter(payable(address(0x707C39F1AaA7c8051287b3b231BccAa8CD72138f)));
+  ICozyRouter router = ICozyRouter(payable(address(0xC58F8634E085243CC661b1623B3bC3224D80B439)));
   ISafetyModuleCozyManager cozySafetyModuleManager =
-    ISafetyModuleCozyManager(address(0x3cdE8D5148811dDC3F2DEA9caFd73d35BD7A20ab));
+    ISafetyModuleCozyManager(address(0x388C9BcBFc8279caae1F85AD164dA61C7a04CEDb));
   IOwnableTriggerFactory ownableTriggerFactory =
-    IOwnableTriggerFactory(address(0xBba03B061CcA848cc3E160417d05261FE5693F41));
-  IMetadataRegistry metadataRegistry = IMetadataRegistry(address(0xD2168C6c33fEe907FB12024E5e7e9219083fBb19));
+    IOwnableTriggerFactory(address(0xFBE275c3a83235357FC5Edf5AfDf68bA6682f785));
+  IMetadataRegistry metadataRegistry = IMetadataRegistry(address(0xA97a1cC5609E8149b5fe0902F9076BF125009346));
 
   function run(string memory fileName_) public virtual {
     string memory json_ = readInput(fileName_);
