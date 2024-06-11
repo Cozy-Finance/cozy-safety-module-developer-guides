@@ -3,11 +3,14 @@ pragma solidity 0.8.22;
 
 import {IERC20} from "../src/interfaces/IERC20.sol";
 import {ICozyRouter} from "../src/interfaces/ICozyRouter.sol";
+import {IDripModelConstantFactory} from "../src/interfaces/IDripModelConstantFactory.sol";
+import {IRewardsManagerCozyManager} from "../src/interfaces/IRewardsManagerCozyManager.sol";
 import {ISafetyModuleCozyManager} from "../src/interfaces/ISafetyModuleCozyManager.sol";
 import {ISafetyModule} from "../src/interfaces/ISafetyModule.sol";
 import {ITrigger} from "../src/interfaces/ITrigger.sol";
 import {IMetadataRegistry} from "../src/interfaces/IMetadataRegistry.sol";
 import {IOwnableTriggerFactory} from "../src/interfaces/IOwnableTriggerFactory.sol";
+import {IRewardsManager} from "../src/interfaces/IRewardsManager.sol";
 import {ScriptUtils} from "./utils/ScriptUtils.sol";
 import {console2} from "forge-std/console2.sol";
 import {stdJson} from "forge-std/StdJson.sol";
@@ -52,6 +55,10 @@ contract DeployUnion is ScriptUtils {
   IOwnableTriggerFactory ownableTriggerFactory =
     IOwnableTriggerFactory(address(0xFBE275c3a83235357FC5Edf5AfDf68bA6682f785));
   IMetadataRegistry metadataRegistry = IMetadataRegistry(address(0xA97a1cC5609E8149b5fe0902F9076BF125009346));
+  IDripModelConstantFactory dripModelConstantFactory =
+    IDripModelConstantFactory(address(0x372eA1BF5728EDef068034cf4531F8E6049a3d3a));
+  IRewardsManagerCozyManager rewardsManagerCozyManager =
+    IRewardsManagerCozyManager(address(0x6a4b05e7759152dDB113dacA8148a16e513Befe4));
 
   function run(string memory fileName_) public virtual {
     string memory json_ = readInput(fileName_);
@@ -62,14 +69,37 @@ contract DeployUnion is ScriptUtils {
           caller_, router.computeSalt(caller_, json_.readBytes32(".triggerSalt"))
         )
     );
-    address deployedSafetyModule_ = deploySafetyModule(json_, deployedTrigger_);
+
+    (address deployedSafetyModule_, address depositReceiptToken_) = deploySafetyModule(json_, deployedTrigger_);
     assert(
       deployedSafetyModule_
         == cozySafetyModuleManager.computeSafetyModuleAddress(
           address(router), router.computeSalt(caller_, json_.readBytes32(".safetyModuleSalt"))
         )
     );
+
     updateMetadata(json_, deployedSafetyModule_);
+
+    address dripModel_ = deployRewardsDripModel(json_);
+    uint256 amountPerSecond_ =
+      json_.readUint(".tokensPerDay") * 10 ** IERC20(json_.readAddress(".rewardPoolAsset")).decimals() / (60 * 60 * 24);
+    assert(
+      dripModel_
+        == dripModelConstantFactory.computeAddress(
+          address(router),
+          json_.readAddress(".dripModelOwner"),
+          amountPerSecond_,
+          router.computeSalt(caller_, json_.readBytes32(".dripModelSalt"))
+        )
+    );
+
+    address deployedRewardsManager_ = deployRewardsManager(json_, depositReceiptToken_, dripModel_);
+    assert(
+      deployedRewardsManager_
+        == rewardsManagerCozyManager.computeRewardsManagerAddress(
+          address(router), router.computeSalt(caller_, json_.readBytes32(".rewardsManagerSalt"))
+        )
+    );
   }
 
   function deployTrigger(string memory json_) public virtual returns (address) {
@@ -142,7 +172,7 @@ contract DeployUnion is ScriptUtils {
     return deployedTrigger_;
   }
 
-  function deploySafetyModule(string memory json_, address deployedTrigger_) public virtual returns (address) {
+  function deploySafetyModule(string memory json_, address deployedTrigger_) public virtual returns (address, address) {
     // -------- Load json --------
     address safetyModuleOwner_ = json_.readAddress(".safetyModuleOwner");
     address safetyModulePauser_ = json_.readAddress(".safetyModulePauser");
@@ -209,7 +239,9 @@ contract DeployUnion is ScriptUtils {
     console2.log("SafetyModule deployed", safetyModule_);
     console2.log("========");
 
-    return safetyModule_;
+    (,,,,, address depositReceiptToken_,) = ISafetyModule(safetyModule_).reservePools(0);
+
+    return (safetyModule_, depositReceiptToken_);
   }
 
   function updateMetadata(string memory json_, address deployedSafetyModule_) public virtual {
@@ -242,7 +274,7 @@ contract DeployUnion is ScriptUtils {
     assert(keccak256(payload_) == keccak256(abi.encodePacked(bytes4(keccak256(bytes(signature_))), calldata_)));
 
     // -------------------------------------
-    // ------ Deploy SafetyModule ----------
+    // --------  Update Metadata  ----------
     // -------------------------------------
     console2.log("========");
     console2.log("Updating SafetyModule Metadata...");
@@ -257,5 +289,113 @@ contract DeployUnion is ScriptUtils {
 
     console2.log("SafetyModule Metadata updated");
     console2.log("========");
+  }
+
+  function deployRewardsDripModel(string memory json_) public virtual returns (address) {
+    // -------- Load json --------
+    address dripModelOwner_ = json_.readAddress(".dripModelOwner");
+    uint256 tokensPerDay_ = json_.readUint(".tokensPerDay");
+    bytes32 dripModelSalt_ = json_.readBytes32(".dripModelSalt");
+    uint256 decimals_ = IERC20(json_.readAddress(".rewardPoolAsset")).decimals();
+    uint256 amountPerSecond_ = (tokensPerDay_ * 10 ** decimals_) / (60 * 60 * 24);
+
+    // -------------------------------------
+    // ----------- Generate Calldata -------
+    // -------------------------------------
+    address targetContract_ = address(router);
+    uint256 value_ = 0;
+    bytes memory calldata_ = abi.encode(dripModelOwner_, amountPerSecond_, dripModelSalt_);
+    bytes memory payload_ =
+      abi.encodeWithSelector(router.deployDripModelConstant.selector, dripModelOwner_, amountPerSecond_, dripModelSalt_);
+    string memory signature_ = "deployDripModelConstant(address,uint256,bytes32)";
+
+    console2.log("targetContract", targetContract_);
+    console2.log("value", value_);
+    console2.log("signature", signature_);
+    console2.log("calldata:");
+    console2.logBytes(calldata_);
+    console2.log("payload:");
+    console2.logBytes(payload_);
+    assert(keccak256(payload_) == keccak256(abi.encodePacked(bytes4(keccak256(bytes(signature_))), calldata_)));
+
+    // -------------------------------------
+    // ------ Deploy Drip model   ----------
+    // -------------------------------------
+    console2.log("========");
+    console2.log("Deploying DripModelConstant...");
+    console2.log("    dripModelOwner", dripModelOwner_);
+    console2.log("    amountPerSecond", amountPerSecond_);
+
+    vm.broadcast();
+    address dripModel_ = router.deployDripModelConstant(dripModelOwner_, amountPerSecond_, dripModelSalt_);
+
+    console2.log("DripModelConstant deployed", dripModel_);
+    console2.log("========");
+
+    return dripModel_;
+  }
+
+  function deployRewardsManager(string memory json_, address depositReceiptToken_, address dripModel_)
+    public
+    virtual
+    returns (address)
+  {
+    address rewardsManagerOwner_ = json_.readAddress(".rewardsManagerOwner");
+    address rewardsManagerPauser_ = json_.readAddress(".rewardsManagerPauser");
+    bytes32 rewardsManagerSalt_ = json_.readBytes32(".rewardsManagerSalt");
+
+    ICozyRouter.StakePoolConfig[] memory stakePoolConfigs_ = new ICozyRouter.StakePoolConfig[](1);
+    stakePoolConfigs_[0] = ICozyRouter.StakePoolConfig(depositReceiptToken_, 10_000);
+    ICozyRouter.RewardPoolConfig[] memory rewardsPoolConfigs_ = new ICozyRouter.RewardPoolConfig[](1);
+    rewardsPoolConfigs_[0] = ICozyRouter.RewardPoolConfig(json_.readAddress(".rewardPoolAsset"), dripModel_);
+
+    // -------------------------------------
+    // ----------- Generate Calldata -------
+    // -------------------------------------
+    address targetContract_ = address(router);
+    uint256 value_ = 0;
+    bytes memory calldata_ = abi.encode(
+      rewardsManagerOwner_, rewardsManagerPauser_, stakePoolConfigs_, rewardsPoolConfigs_, rewardsManagerSalt_
+    );
+    bytes memory payload_ = abi.encodeWithSelector(
+      router.deployRewardsManager.selector,
+      rewardsManagerOwner_,
+      rewardsManagerPauser_,
+      stakePoolConfigs_,
+      rewardsPoolConfigs_,
+      rewardsManagerSalt_
+    );
+    string memory signature_ = "deployRewardsManager(address,address,(address,uint16)[],(address,address)[],bytes32)";
+
+    console2.log("targetContract", targetContract_);
+    console2.log("value", value_);
+    console2.log("signature", signature_);
+    console2.log("calldata:");
+    console2.logBytes(calldata_);
+    console2.log("payload:");
+    console2.logBytes(payload_);
+    assert(keccak256(payload_) == keccak256(abi.encodePacked(bytes4(keccak256(bytes(signature_))), calldata_)));
+
+    // -------------------------------------
+    // ------ Deploy RewardsManager --------
+    // -------------------------------------
+    console2.log("========");
+    console2.log("Deploying RewardsManager...");
+    console2.log("    rewardsManagerOwner", rewardsManagerOwner_);
+    console2.log("    rewardsManagerPauser", rewardsManagerPauser_);
+    console2.log("    stakeAsset", stakePoolConfigs_[0].asset);
+    console2.log("    stakeAssetWeight", stakePoolConfigs_[0].rewardsWeight);
+    console2.log("    rewardAsset", rewardsPoolConfigs_[0].asset);
+    console2.log("    dripModel", rewardsPoolConfigs_[0].dripModel);
+
+    vm.broadcast();
+    address rewardsManager_ = router.deployRewardsManager(
+      rewardsManagerOwner_, rewardsManagerPauser_, stakePoolConfigs_, rewardsPoolConfigs_, rewardsManagerSalt_
+    );
+
+    console2.log("RewardsManager deployed", rewardsManager_);
+    console2.log("========");
+
+    return rewardsManager_;
   }
 }
